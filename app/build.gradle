@@ -1,12 +1,17 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "25.0.2"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    lintOptions {
+        abortOnError false
+    }
+
     defaultConfig {
         applicationId "ijkplayer.samples.dou.com.ijkplayer_sapmle"
         minSdkVersion 21
-        targetSdkVersion 24
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -17,6 +22,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        all32 { minSdkVersion 11 }
+        all64 { minSdkVersion 21 }
+    }
+    buildToolsVersion '25.0.0'
 }
 
 dependencies {
@@ -27,15 +38,29 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.1'
     testCompile 'junit:junit:4.12'
 
-    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.7.8.1'
-    compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.7.8.1'
+    compile project(':ijkplayer-java')
+    compile project(':ijkplayer-exo')
 
-    compile 'tv.danmaku.ijk.media:ijkplayer-armv5:0.7.8.1'
-    compile 'tv.danmaku.ijk.media:ijkplayer-arm64:0.7.8.1'
-    compile 'tv.danmaku.ijk.media:ijkplayer-x86:0.7.8.1'
-    compile 'tv.danmaku.ijk.media:ijkplayer-x86_64:0.7.8.1'
 
-    compile 'tv.danmaku.ijk.media:ijkplayer-exo:0.7.8.1'
+    all32Compile project(':ijkplayer-armv5')
+    all32Compile project(':ijkplayer-armv7a')
+    all32Compile project(':ijkplayer-x86')
+
+    all64Compile project(':ijkplayer-armv5')
+    all64Compile project(':ijkplayer-armv7a')
+    all64Compile project(':ijkplayer-arm64')
+    all64Compile project(':ijkplayer-x86')
+    all64Compile project(':ijkplayer-x86_64')
+
+//    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.7.8.1'
+//    compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.7.8.1'
+//
+//    compile 'tv.danmaku.ijk.media:ijkplayer-armv5:0.7.8.1'
+//    compile 'tv.danmaku.ijk.media:ijkplayer-arm64:0.7.8.1'
+//    compile 'tv.danmaku.ijk.media:ijkplayer-x86:0.7.8.1'
+//    compile 'tv.danmaku.ijk.media:ijkplayer-x86_64:0.7.8.1'
+//
+//    compile 'tv.danmaku.ijk.media:ijkplayer-exo:0.7.8.1'
 
     compile 'com.tbruyelle.rxpermissions:rxpermissions:0.9.3@aar'
 

@@ -58,15 +58,15 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void call(Boolean aBoolean) {
                         if (aBoolean) {
-//                            String path = "/DCIM/Camera/VID_20170403_140043.mp4";
-//                            String path = "/Qiwo/58DF3A1D.avi";
+//                            String path = Environment.getExternalStorageDirectory() + "/Qiwo/test_mp4.mp4";
+                            String path = Environment.getExternalStorageDirectory() + "/Qiwo/avi.avi";
 
-                            Uri net_url = Uri.parse("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
+//                            Uri net_url = Uri.parse("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
 
                             mVideoView.setMediaController(mMediaController);
                             mVideoView.setHudView(mHudView);
 //                            mVideoView.setVideoURI(net_url);
-                            mVideoView.setVideoURI(net_url);
+                            mVideoView.setVideoURI(Uri.parse(path));
                             mVideoView.setOnPreparedListener(new IMediaPlayer.OnPreparedListener() {
                                 @Override
                                 public void onPrepared(IMediaPlayer iMediaPlayer) {
